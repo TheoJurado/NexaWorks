@@ -2,10 +2,13 @@
 
 namespace NexaWorks.Models
 {
-    internal class OS
+    public class OS
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+
+
+        public ICollection<Version_OS> AssociatedVersionOS { get; set; }
     }
 }

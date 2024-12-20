@@ -2,7 +2,7 @@
 
 namespace NexaWorks.Models
 {
-    internal class Produit
+    public class Product
     {
         [Key]
         public int Id { get; set; }
