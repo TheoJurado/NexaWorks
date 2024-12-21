@@ -1,5 +1,6 @@
 using NexaWorks.Data;
 using Microsoft.EntityFrameworkCore;
+using NexaWorks.Repository;
 
 namespace NexaWorks
 {
@@ -15,6 +16,8 @@ namespace NexaWorks
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IRequetes, Requetes>();
 
             var app = builder.Build();
 
