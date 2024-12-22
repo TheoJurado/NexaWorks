@@ -4,6 +4,7 @@ namespace NexaWorks.Repository
 {
     public interface IRequetes
     {
+
         Task<List<Ticket>> GetAllTicketsNotResolved();
         Task<List<Ticket>> GetAllTicketsNotResolvedOfThisProductID(int productId);
         Task<List<Ticket>> GetAllTicketsNotResolvedOfThisVersionID(int versionId);

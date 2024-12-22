@@ -1,0 +1,81 @@
+﻿/* Styling body and containers */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+
+h2 {
+    color: #333;
+}
+
+/* Button styles */
+button {
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    padding: 10px 15px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: #0056b3; /* Darker blue for hover */
+    }
+
+    button:active {
+        background-color: #004494; /* Even darker blue for active */
+    }
+
+/* Input field styles */
+input[type="text"], input[type="date"] {
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 40%;
+    font-size: 14px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Align notResolved and solved side by side */
+.notResolved, .solved {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%; /* Adjust as needed for spacing */
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Handle responsiveness */
+@media (max-width: 768px) {
+    .notResolved, .solved {
+        display: block;
+        width: 100%;
+    }
+}
