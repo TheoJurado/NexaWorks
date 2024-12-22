@@ -3,16 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NexaWorks.Models
 {
-    internal class Version
+    public class Version
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string NumVersion { get; set; }
 
-        public int ProduitKeyId { get; set; }
-        [ForeignKey("ProduitKeyId")]
-        public Produit ProduitKey { get; set; }
 
-        public ICollection<OS> OSs { get; set; }
+        public int ProductKeyId { get; set; }
+        [ForeignKey("ProductKeyId")]
+        public Product ProductKey { get; set; }
+
+
+        public ICollection<Version_OS> AssociatedVersionOS { get; set; }
     }
 }

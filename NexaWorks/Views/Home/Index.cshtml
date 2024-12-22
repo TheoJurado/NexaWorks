@@ -1,8 +1,214 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Ticket>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+    <title>Gestion des Tickets</title>
+    <link rel="stylesheet" href="@Url.Content("~/css/StyleSheet.css")">
+</head>
+<body>
+    <div>
+        <!-- buttons part -->
+        <h2>Actions</h2>
+        <label for="sharedInputProd">ID Produit :</label>
+        <input id="sharedValueProd" name="sharedValueProd" type="text" placeholder="Entrez l'Id du logiciel" />
+        <BR>
+        <label for="sharedInputVersion">ID Version :</label>
+        <input id="sharedValueVersion" name="sharedValueVersion" type="text" placeholder="Entrez l'Id de la version" />
+        <BR>
+        <label for="sharedInputDateStart">Date minimal :</label>
+        <input id="sharedValueDateStart" name="sharedValueDateStart" type="date" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" />
+        <BR>
+        <label for="sharedInputDateEnd">Date maximal :</label>
+        <input id="sharedValueDateEnd" name="sharedValueDateEnd" type="date" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" />
+        <BR>
+        <label for="sharedInputKeyWord">Mots clefs :</label>
+        <input id="sharedValueKeyWord" name="sharedValueKeyWord" type="text" placeholder="Entrez les mots clefs" />
+        <BR>
+
+        <div class="notResolved">
+            <form method="get" action="@Url.Action("AllTicketsNotResolved", "Home")">
+                <button type="submit">Tous les tickets non résolus</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsNotResolvedFromProduct", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <button type="submit">Tickets non résolus pour un produit</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsNotResolvedFromVersion", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <button type="submit">Tickets non résolus pour une version</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromProductAndTime", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets apparus sur une période pour un produit</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromVersionAndTime", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets apparus sur une période pour une version</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsNotResolvedWithKeyWord", "Home")">
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <button type="submit">Tickets non résolus avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsNotResolvedFromProductWithKeyWord", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <button type="submit">Tickets non résolus d'un produit avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsNotResolvedFromVersionWithKeyWord", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <button type="submit">Tickets non résolus d'une version avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromProductionWithKeyWordAndTime", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets apparus sur une période pour un produit avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromVersionnWithKeyWordAndTime", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets apparus sur une période pour une version avec mots clefs</button>
+            </form>
+        </div>
+
+        <div class="solved">
+            <form method="get" action="@Url.Action("AllTicketsSolved", "Home")">
+                <button type="submit">Tous les tickets résolus</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsSolvedFromProduct", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <button type="submit">Tickets résolus pour un produit</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsSolvedFromVersion", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <button type="submit">Tickets résolus pour une version</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromProductSolvedInTime", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets résolus sur une période pour un produit</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromVersionSolvedInTime", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets résolus sur une période pour une version</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsSolvedWithKeyWord", "Home")">
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <button type="submit">Tickets résolus avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsSolvedFromProductWithKeyWord", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <button type="submit">Tickets résolus d'un produit avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsSolvedFromVersionWithKeyWord", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <button type="submit">Tickets résolus d'une version avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromProductionWithKeyWordSolvedInTime", "Home")">
+                <input type="hidden" name="prodId" class="sharedProd" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets résolus sur une période pour un produit avec mots clefs</button>
+            </form>
+            <form method="get" action="@Url.Action("AllTicketsFromVersionnWithKeyWordSolvedInTime", "Home")">
+                <input type="hidden" name="verId" class="sharedVer" />
+                <input type="hidden" name="keyWord" class="sharedKeyWord" />
+                <input type="hidden" name="dateStart" class="sharedDateStart" />
+                <input type="hidden" name="dateEnd" class="sharedDateEnd" />
+                <button type="submit">Tickets résolus sur une période pour une version avec mots clefs</button>
+            </form>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- results part -->
+    <div>
+        <h2>Résultats</h2>
+        @if (Model != null && Model.Count > 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Description</th>
+                        <th>Date de Création</th>
+                        <th>Logiciel</th>
+                        <th>Version</th>
+                        <th>OS</th>
+                        <th>Date de Résolution</th>
+                        <th>Description de Résolution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ticket in Model)
+                    {
+                        <tr>
+                            <td>@ticket.Id</td>
+                            <td>@ticket.Description</td>
+                            <td>@ticket.DateCreat</td>
+                            <td>@ticket.AssociatedVersionOSKey.VersionKey.ProductKey.Name</td>
+                            <td>@ticket.AssociatedVersionOSKey.VersionKey.NumVersion</td>
+                            <td>@ticket.AssociatedVersionOSKey.OSKey.Name</td>
+                            @if (ticket.IsResolved)
+                            {
+                                <td>@ticket.DateResolve</td>
+                                <td>@ticket.ResolveDescription</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Aucun résultat trouvé.</p>
+        }
+    </div>
+</body>
+</html>
+
+<script>
+    // Synchronize prod value
+    document.getElementById('sharedValueProd').addEventListener('input', function () {
+        const value = this.value;
+        document.querySelectorAll('.sharedProd').forEach(input => { input.value = value; });
+    });
+    // Synchronize version value
+    document.getElementById('sharedValueVersion').addEventListener('input', function () {
+        const value = this.value;
+        document.querySelectorAll('.sharedVer').forEach(input => { input.value = value; });
+    });
+    // Synchronize dateStart value
+    document.getElementById('sharedValueDateStart').addEventListener('input', function () {
+        const value = this.value;
+        document.querySelectorAll('.sharedDateStart').forEach(input => { input.value = value; });
+    });
+    // Synchronize dateEnd value
+    document.getElementById('sharedValueDateEnd').addEventListener('input', function () {
+        const value = this.value;
+        document.querySelectorAll('.sharedDateEnd').forEach(input => { input.value = value; });
+    });
+    // Synchronize keyWord value
+    document.getElementById('sharedValueKeyWord').addEventListener('input', function () {
+        const value = this.value;
+        document.querySelectorAll('.sharedKeyWord').forEach(input => { input.value = value; });
+    });
+</script>

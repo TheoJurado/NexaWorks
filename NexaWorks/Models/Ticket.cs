@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NexaWorks.Models
 {
-    internal class Ticket
+    public class Ticket
     {
 
         [Key]
@@ -12,15 +12,11 @@ namespace NexaWorks.Models
         public string Description { get; set; }
         public bool IsResolved { get; set; } = false;
         public DateOnly? DateResolve { get; set; }
-        public string Resolve { get; set; }
+        public string? ResolveDescription { get; set; }
 
-        public int VersionKeyId { get; set; }
-        [ForeignKey("VersionKeyId")]
-        public Version VersionKey { get; set; }
 
-        public int OSUsedId { get; set; }
-        [ForeignKey("OSUsedId")]
-        public OS OSUsed { get; set; }
-
+        public int AssociatedVersionOSId { get; set; }
+        [ForeignKey("AssociatedVersionOSId")]
+        public Version_OS AssociatedVersionOSKey { get; set; }
     }
 }
