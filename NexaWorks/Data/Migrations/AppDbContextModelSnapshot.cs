@@ -132,7 +132,7 @@ namespace NexaWorks.Data.Migrations
 
                     b.HasIndex("VersionKeyId");
 
-                    b.ToTable("Targets");
+                    b.ToTable("Version_OS", (string)null);
                 });
 
             modelBuilder.Entity("NexaWorks.Models.Ticket", b =>

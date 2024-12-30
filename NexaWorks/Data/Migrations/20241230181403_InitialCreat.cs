@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NexaWorks.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDataBase : Migration
+    public partial class InitialCreat : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,15 +68,15 @@ namespace NexaWorks.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Targets", x => x.Id);
+                    table.PrimaryKey("PK_Version_OS", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Targets_OSs_OSKeyId",
+                        name: "FK_Version_OS_OSs_OSKeyId",
                         column: x => x.OSKeyId,
                         principalTable: "OSs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Targets_Versions_VersionKeyId",
+                        name: "FK_Version_OS_Versions_VersionKeyId",
                         column: x => x.VersionKeyId,
                         principalTable: "Versions",
                         principalColumn: "Id",
@@ -100,27 +100,27 @@ namespace NexaWorks.Data.Migrations
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tickets_Targets_AssociatedVersionOSId",
+                        name: "FK_Tickets_Version_OS_AssociatedVersionOSId",
                         column: x => x.AssociatedVersionOSId,
-                        principalTable: "Targets",
+                        principalTable: "Version_OS",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Targets_OSKeyId",
-                table: "Targets",
-                column: "OSKeyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Targets_VersionKeyId",
-                table: "Targets",
-                column: "VersionKeyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_AssociatedVersionOSId",
                 table: "Tickets",
                 column: "AssociatedVersionOSId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Version_OS_OSKeyId",
+                table: "Version_OS",
+                column: "OSKeyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Version_OS_VersionKeyId",
+                table: "Version_OS",
+                column: "VersionKeyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Versions_ProductKeyId",
@@ -135,7 +135,7 @@ namespace NexaWorks.Data.Migrations
                 name: "Tickets");
 
             migrationBuilder.DropTable(
-                name: "Targets");
+                name: "Version_OS");
 
             migrationBuilder.DropTable(
                 name: "OSs");
