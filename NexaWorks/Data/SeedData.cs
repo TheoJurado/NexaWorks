@@ -370,8 +370,8 @@ namespace NexaWorks.Data
                 DateCreat = new DateOnly(2022, 10, 8),
                 DateResolve = new DateOnly(2022, 10, 27),
                 IsResolved = true,
-                Description = "L'utilisateur dit que l'application dois faire une mise à jour quand elle est lancée, mais aucun telechargement ne se lance quand il essaye de faire la mise à jour.",
-                ResolveDescription = "L'utilisateur a essayer de lancer l'application alors qu'il était en déplacement et n'avais aucune connexion internet.",
+                Description = "L'utilisateur dit que l'application doit faire une mise à jour quand elle est lancée, mais aucun téléchargement ne se lance quand il essai de faire la mise à jour.",
+                ResolveDescription = "L'utilisateur a essayé de lancer l'application alors qu'il était en déplacement et n'avait aucune connexion internet.",
                 AssociatedVersionOSId = TargetSocial10Android.Id
             };
             Ticket ticket2 = new Ticket
@@ -406,7 +406,7 @@ namespace NexaWorks.Data
                 DateCreat = new DateOnly(2022, 7, 3),
                 DateResolve = null,
                 IsResolved = false,
-                Description = "L'utilisateur reçoie des notifications incorrectes indiquant des changement de la valeur des actions éroné.",
+                Description = "L'utilisateur reçoit des notifications incorrectes concernant des changements de la valeur des actions.",
                 ResolveDescription = null,
                 AssociatedVersionOSId = TargetInves20Android.Id
             };
