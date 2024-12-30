@@ -430,7 +430,7 @@ namespace NexaWorks.Data
             };
             Ticket ticket8 = new Ticket
             {
-                DateCreat = new DateOnly(2023, 8, 5),
+                DateCreat = new DateOnly(2022, 8, 5),
                 DateResolve = null,
                 IsResolved = false,
                 Description = "Lors de l'activation des notifications de rappel, certains rappels ne se déclenchent pas à l'heure programmée.",
@@ -439,11 +439,11 @@ namespace NexaWorks.Data
             };
             Ticket ticket9 = new Ticket
             {
-                DateCreat = new DateOnly(2022, 8, 5),
-                DateResolve = null,
-                IsResolved = false,
-                Description = "Lors de l'activation des notifications de rappel, certains rappels ne se déclenchent pas à l'heure programmée.",
-                ResolveDescription = null,
+                DateCreat = new DateOnly(2023, 2, 22),
+                DateResolve = new DateOnly(2023, 3, 12),
+                IsResolved = true,
+                Description = "L'application plante lors de l'ajout d'un portefeuille de plus de 50 actifs financiers.",
+                ResolveDescription = "Un correctif a été déployé pour optimiser la gestion des portefeuilles contenant un grand nombre d'éléments. L'utilisateur est invité à faire la mise à jour vers la version 2.0.",
                 AssociatedVersionOSId = TargetInves10iOS.Id
             };
             Ticket ticket10 = new Ticket
