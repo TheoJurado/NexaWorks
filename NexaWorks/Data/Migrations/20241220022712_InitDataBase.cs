@@ -58,7 +58,7 @@ namespace NexaWorks.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Targets",
+                name: "Version_OS",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
