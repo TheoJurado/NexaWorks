@@ -12,8 +12,8 @@ using NexaWorks.Data;
 namespace NexaWorks.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241220022712_InitDataBase")]
-    partial class InitDataBase
+    [Migration("20241230181403_InitialCreat")]
+    partial class InitialCreat
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,7 +135,7 @@ namespace NexaWorks.Data.Migrations
 
                     b.HasIndex("VersionKeyId");
 
-                    b.ToTable("Targets");
+                    b.ToTable("Version_OS", (string)null);
                 });
 
             modelBuilder.Entity("NexaWorks.Models.Ticket", b =>

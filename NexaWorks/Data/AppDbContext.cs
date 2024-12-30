@@ -20,6 +20,9 @@ namespace NexaWorks.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Version_OS>().ToTable("Version_OS");/**/
+
             modelBuilder.Entity<Version_OS>()
                 .HasOne(vos => vos.VersionKey) // One Version_OS is linked to one Version
                 .WithMany(v => v.AssociatedVersionOS) // one Version is linked to many Version_OS
